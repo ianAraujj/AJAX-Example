@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="https://getbootstrap.com/docs/4.0/assets/img/favicons/favicon.ico">
+
+  <title> AJAX </title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+
+  <!-- Bootstrap core CSS -->
+  <link href="./noticias_files/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="./noticias_files/album.css" rel="stylesheet">
+
+  <link id="avast_os_ext_custom_font"
+    href="chrome-extension://eofcbnmajmjmplflapaojjnihcjkigck/common/ui/fonts/fonts.css" rel="stylesheet"
+    type="text/css">
+</head>
+
+<body>
+
+  <header>
+    <div class="navbar navbar-dark bg-dark box-shadow">
+      <div class="container d-flex justify-content-between">
+        <a href="" class="navbar-brand d-flex align-items-center">
+          <strong>Notícias</strong>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main role="main">
+
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading"> AJAX</h1>
+        <h3> Exemplo com API de Notícias </h3>
+        <p class="lead text-muted">
+          AJAX não é uma linguagem de programação. O AJAX apenas usa uma combinação de: Um XMLHttpRequestObject interno
+          do navegador
+          (para solicitar dados de um servidor da web) JavaScript e HTML DOM (para exibir ou usar os dados)
+        </p>
+        <p>
+          <a href="https://www.w3schools.com/js/js_ajax_intro.asp"> Mais Informações </a>
+        </p>
+        <p>
+          <button type="button" class="btn btn-primary" id="BotaoCarregar">Carregar Noticias</button>
+        </p>
+
+        <h3 id="status"></h3>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row" id="feed" style="display: none;">
+          <!-- Noticia 01-->
+          <div class="col-md-4">
+
+            <div class="card mb-4 box-shadow">
+
+              <img class="card-img-top"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20226%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_170df85baa3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_170df85baa3%22%3E%3Crect%20width%3D%22348%22%20height%3D%22226%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.6875%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                data-holder-rendered="true" id="img1">
+
+              <div class="card-body">
+
+                <h5 id="titulo1">Título</h4>
+
+                  <p class="card-text" id="data1">Data
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-sm btn-outline-secondary" href="" id="btn1">URL DA
+                        NOTICIA</a>
+                    </div>
+
+                  </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Noticia 02-->
+          <div class="col-md-4">
+
+            <div class="card mb-4 box-shadow">
+
+              <img class="card-img-top"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20226%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_170df85baa3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_170df85baa3%22%3E%3Crect%20width%3D%22348%22%20height%3D%22226%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.6875%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                data-holder-rendered="true" id="img2">
+
+              <div class="card-body">
+
+                <h5 id="titulo2">Título</h4>
+
+                  <p class="card-text" id="data2">Data
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-sm btn-outline-secondary" href="" id="btn2">URL DA
+                        NOTICIA</a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Noticia 03-->
+          <div class="col-md-4">
+
+            <div class="card mb-4 box-shadow">
+
+              <img class="card-img-top"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20226%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_170df85baa3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_170df85baa3%22%3E%3Crect%20width%3D%22348%22%20height%3D%22226%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.6875%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                data-holder-rendered="true" id="img3">
+
+              <div class="card-body">
+
+                <h5 id="titulo3">Título</h4>
+
+                  <p class="card-text" id="data3">Data
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-sm btn-outline-secondary" href="" id="btn3">URL DA
+                        NOTICIA</a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+
+
+          <!-- Noticia 04-->
+          <div class="col-md-4">
+
+            <div class="card mb-4 box-shadow">
+
+              <img class="card-img-top"
+                data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
+                alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
+                src="data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%22348%22%20height%3D%22226%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20348%20226%22%20preserveAspectRatio%3D%22none%22%3E%3Cdefs%3E%3Cstyle%20type%3D%22text%2Fcss%22%3E%23holder_170df85baa3%20text%20%7B%20fill%3A%23eceeef%3Bfont-weight%3Abold%3Bfont-family%3AArial%2C%20Helvetica%2C%20Open%20Sans%2C%20sans-serif%2C%20monospace%3Bfont-size%3A17pt%20%7D%20%3C%2Fstyle%3E%3C%2Fdefs%3E%3Cg%20id%3D%22holder_170df85baa3%22%3E%3Crect%20width%3D%22348%22%20height%3D%22226%22%20fill%3D%22%2355595c%22%3E%3C%2Frect%3E%3Cg%3E%3Ctext%20x%3D%22116.7109375%22%20y%3D%22120.6875%22%3EThumbnail%3C%2Ftext%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E"
+                data-holder-rendered="true" id="img4">
+
+              <div class="card-body">
+
+                <h5 id="titulo4">Título</h4>
+
+                  <p class="card-text" id="data4">Data
+                  </p>
+
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <div class="btn-group">
+                      <a type="button" class="btn btn-sm btn-outline-secondary" href="" id="btn4">URL DA
+                        NOTICIA</a>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="jquery-3.4.1.min.js"></script>
+
+  <!-- MEU SCRIPT-->
+  <script src="scripts.js"></script>
+
+  <svg xmlns="http://www.w3.org/2000/svg" width="348" height="226" viewBox="0 0 348 226" preserveAspectRatio="none"
+    style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;">
+    <defs>
+      <style type="text/css"></style>
+    </defs><text x="0" y="17"
+      style="font-weight:bold;font-size:17pt;font-family:Arial, Helvetica, Open Sans, sans-serif">Thumbnail</text>
+  </svg>
+</body>
+
+</html>

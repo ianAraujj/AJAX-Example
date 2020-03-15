@@ -1,0 +1,8 @@
+* API de notícias:
+    https://newsapi.org/
+
+* OUTRAS APIs: https://viacep.com.br/ws/64030070/json/
+    Retorna informações de endereço com base no CEP
+
+* Referências:
+    https://satellasoft.com/satellasoft/?materia=requisitando-dados-de-endereco-com-javascript
